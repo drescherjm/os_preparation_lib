@@ -16,6 +16,8 @@ HELPERS="${CURRENT_FOLDER}/helpers"
 TEMPLATES="${CURRENT_FOLDER}/templates"
 DATABAG="${CURRENT_FOLDER}/databag"
 TMP="${CURRENT_FOLDER}/tmp"
+
+HELPERS_VIEWS="${CURRENT_FOLDER}/helpers_views"
 # * Defined in lib/function.sh
 # CONFIG_FOLDER ===> ${TEMPLATES}/{FUNC_NAME}
 
