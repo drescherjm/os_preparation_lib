@@ -6,9 +6,9 @@ do
   HELPER_VIEW_FOLDER="${HELPERS_VIEWS}/${HELPER_NAME}"
   MAKE_FUNC="
   ${HELPER_NAME} (){
-    echo \"******************************\"
+    echo \"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\"
     echo \"        ${HELPER_NAME}\"
-    echo \"******************************\"
+    echo \"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\"
 
     HELPER_VIEW_FOLDER=\"${HELPER_VIEW_FOLDER}\"
     . ${HELPERS}/${HELPER_NAME}.sh
