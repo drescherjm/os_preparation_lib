@@ -31,4 +31,4 @@ ALL_ARGVS=($@)
 #-----------------------------------------------------------------------------------------
 # lib use only - helper
 #-----------------------------------------------------------------------------------------
-HELPER_NAMES=($(ls $HELPERS | grep -E "^helper_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
+HELPER_NAMES=($(ls $HELPERS | grep -E "^[_]?helper_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
