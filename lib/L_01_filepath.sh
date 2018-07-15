@@ -10,7 +10,11 @@ FUNCTIONS="${CURRENT_FOLDER}/functions"
 # LIB_SCRIPTS ===> "${CURRENT_FOLDER}/lib/L_xx_xxx.sh"
 # MAKE_FUNC ===> Used for make function name
 
+#***** helper use ******
 HELPERS="${CURRENT_FOLDER}/helpers"
+
+#***** task use ******
+TASKS="${CURRENT_FOLDER}/tasks"
 
 #***** functions use ******
 TEMPLATES="${CURRENT_FOLDER}/templates"
@@ -32,3 +36,9 @@ ALL_ARGVS=($@)
 # lib use only - helper
 #-----------------------------------------------------------------------------------------
 HELPER_NAMES=($(ls $HELPERS | grep -E "^helper_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
+
+#-----------------------------------------------------------------------------------------
+# lib use only - task
+#-----------------------------------------------------------------------------------------
+TASK_NAMES=($(ls $TASKS | grep -E "^task_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
+
