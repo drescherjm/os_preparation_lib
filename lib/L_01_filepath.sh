@@ -10,6 +10,9 @@ FUNCTIONS="${CURRENT_FOLDER}/functions"
 # LIB_SCRIPTS ===> "${CURRENT_FOLDER}/lib/L_xx_xxx.sh"
 # MAKE_FUNC ===> Used for make function name
 
+#***** script use ******
+SCRIPTS="${CURRENT_FOLDER}/scripts"
+
 #***** helper use ******
 HELPERS="${CURRENT_FOLDER}/helpers"
 
