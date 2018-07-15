@@ -40,5 +40,5 @@ HELPER_NAMES=($(ls $HELPERS | grep -E "^helper_[^[:space:]]+(.sh)$" | sort -n | 
 #-----------------------------------------------------------------------------------------
 # lib use only - task
 #-----------------------------------------------------------------------------------------
-TASK_NAMES=($(ls $TASKS | grep -E "^task_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
+TASK_NAMES=($(ls $TASKS | grep -E "^[_]?task_[^[:space:]]+(.sh)$" | sort -n | sed 's/\.sh$//g'))
 
