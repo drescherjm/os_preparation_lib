@@ -11,7 +11,7 @@ FUNCTIONS="${CURRENT_FOLDER}/functions"
 # MAKE_FUNC ===> Used for make function name
 
 #***** script use ******
-SCRIPTS="${CURRENT_FOLDER}/scripts"
+PLUGINS="${CURRENT_FOLDER}/plugins"
 
 #***** helper use ******
 HELPERS="${CURRENT_FOLDER}/helpers"
