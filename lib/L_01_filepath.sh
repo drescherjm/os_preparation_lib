@@ -5,10 +5,6 @@
 #CURRENT_SCRIPT="$(readlink -m $0)"  # This var move to start.sh
 #CURRENT_FOLDER="$(dirname "${CURRENT_SCRIPT}")"  # This var move to start.sh
 FUNCTIONS="${CURRENT_FOLDER}/functions"
-# * Defined in app.sh
-# LIB ===> "${CURRENT_FOLDER}/lib"
-# LIB_SCRIPTS ===> "${CURRENT_FOLDER}/lib/L_xx_xxx.sh"
-# MAKE_FUNC ===> Used for make function name
 
 #***** script use ******
 PLUGINS="${CURRENT_FOLDER}/plugins"
@@ -17,7 +13,7 @@ PLUGINS="${CURRENT_FOLDER}/plugins"
 HELPERS="${CURRENT_FOLDER}/helpers"
 
 #***** task use ******
-TASKS="${CURRENT_FOLDER}/tasks"
+TASKS="${OS_PRE_LIB}/tasks"
 
 #***** functions use ******
 TEMPLATES="${CURRENT_FOLDER}/templates"

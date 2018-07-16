@@ -1,7 +1,7 @@
 #------------------------------------
 # Define lib path
 #------------------------------------
-#LIB="${OS_PREPARATION_LIB}/lib"   # This var move to start.sh
+LIB="${OS_PRE_LIB}/lib"
 
 #------------------------------------
 # Include libaries
