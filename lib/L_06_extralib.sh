@@ -6,6 +6,8 @@
 #       eval "${IF_IS_SOURCED_OR_FUNCTION}"
 # Example:
 #         [[ -n "$(eval "${IF_IS_SOURCED_OR_FUNCTION}")" ]] && return 0 || exit 0
+# OR just:
+# eval "${SKIP_SCRIPT}"
 #-----------------------------------------------------------------------------------------
 
 IF_IS_SOURCED_SCRIPT="$(cat <<EOF
@@ -25,6 +27,22 @@ EOF
 IF_IS_SOURCED_OR_FUNCTION="$(cat <<EOF
 if [[ -n "\$(eval "\${IF_IS_SOURCED_SCRIPT}")" ]] || [[ -n "\$(eval "\${IF_IS_FUNCTION}")" ]]; then
   echo "True: use 'return 0' to skip script"
+fi
+EOF
+)"
+
+#SKIP_SCRIPT="$(cat <<EOF
+#[[ -n "\$(eval "\${IF_IS_SOURCED_OR_FUNCTION}")" ]] && return 0 || exit 0
+#EOF
+#)"
+
+SKIP_SCRIPT="$(cat <<EOF
+if [[ -n "\$(eval "\${IF_IS_SOURCED_OR_FUNCTION}")" ]]; then
+  echo "return"
+  return 0
+else
+  echo "exit"
+  exit 0
 fi
 EOF
 )"
