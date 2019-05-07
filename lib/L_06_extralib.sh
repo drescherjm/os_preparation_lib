@@ -27,4 +27,5 @@ if [[ -n "\$(eval "\${IF_IS_SOURCED_SCRIPT}")" ]] || [[ -n "\$(eval "\${IF_IS_FU
   echo "Is this a sourced script or function: true    #use 'return 0' to skip script"
 fi
 EOF
+)"
 
