@@ -5,7 +5,7 @@ for FUNC_NAME in ${FUNC_NAMES[@]}
 do
   CONFIG_FOLDER="${TEMPLATES}/${FUNC_NAME}"
   L_DATABAG_FILE="${DATABAG}/${FUNC_NAME}.cfg"
-  L_IF_RENDER_USE="$(grep "RENDER_CP" "${FUNCTIONS}/${FUNC_NAME}.sh")"
+  L_IF_RENDER_USE="$(grep "DATABAG_CFG:enable" "${FUNCTIONS}/${FUNC_NAME}.sh")"
   MAKE_FUNC="
   ${FUNC_NAME} (){
     echo \"==============================\"
