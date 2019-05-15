@@ -12,7 +12,12 @@ do
     echo \"        ${FUNC_NAME}\"
     echo \"==============================\"
 
+    # -- Variable passed to function used ---
+    ### If you want to pass variables to function use,
+    ### you must define here
     CONFIG_FOLDER=\"${CONFIG_FOLDER}\"
+    DATABAG_FILE=\"${L_DATABAG_FILE}\"
+    # -- Variable passed to function used ---
     #if [ ! -d ${CONFIG_FOLDER} ]
     #then
     #  mkdir -p ${CONFIG_FOLDER}

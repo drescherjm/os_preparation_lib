@@ -13,5 +13,5 @@ do
 
   test -d $current_target_folder || mkdir -p $current_target_folder
 
-  RENDER_CP $current_conf $current_target
+  RENDER_CP_SED $current_conf $current_target
 done
