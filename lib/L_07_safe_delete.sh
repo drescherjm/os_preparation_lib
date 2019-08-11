@@ -15,6 +15,7 @@ CHECK_IF_VAR1_IN_VAR2() {
   #echo "var2: ${keywords_var2[@]}"
 
   # ----------------------------------------------------
+  # Ref. https://stackoverflow.com/questions/11456403/stop-shell-wildcard-character-expansion
   # Ref. https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
   # Disable filename expansion (globbing)
   # set -f    # Disable
