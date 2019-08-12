@@ -166,10 +166,24 @@ CHECK_FILE_READLINK() {
   fi
 }
 
+# --- Check empty ---
+# Avoid user deletes null file
+CHECK_FILE_EMPTY() {
+  local keywords_var1="$1"
+
+  if [[ "${keywords_var1}" =~ ^[[:space:]]*$ ]]; then
+    echo "(empty check) FATAL ERROR: deleting \"NULL\" is NOT allowed..."
+
+    exit 1
+  fi
+}
+
+
 SAFE_DELETE () {
   local keywords_var1="$1"
 
   # --- check files ---
+  CHECK_FILE_EMPTY "${keywords_var1}"
   CHECK_FILE_KEYWORD_DANGER "${keywords_var1}"
   CHECK_FILE_KEYWORD "${keywords_var1}"
   CHECK_FILE_READLINK "${keywords_var1}"
