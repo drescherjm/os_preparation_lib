@@ -1,5 +1,6 @@
 #-------------------------------------------------
-# Function
+# Usage :
+# SAFE_DELETE "${DELETE_FILE}"
 #-------------------------------------------------
 CHECK_IF_VAR1_IN_VAR2() {
   local keywords_var1="$1"
