@@ -69,7 +69,7 @@ CHECK_IF_VAR1_IN_VAR2_GREP() {
 
 }
 
-# --- Check exactly the same name and check for dangerouse keywords ---
+# --- Check exactly the same name and check for dangerous keywords ---
 # Avoid user deletes files using wrong wildcard
 CHECK_FILE_KEYWORD_DANGER() {
   local keywords_var1="$1"
