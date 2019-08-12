@@ -62,8 +62,20 @@ CHECK_IF_VAR1_IN_VAR2_GREP() {
       match_words="${match_words} $(echo "${keyword_var1}" | grep -F "${keyword_var2}")"
     done
   done
+  # --- xargs ---
   # xargs usage below will remove empty line automatically (xargs is useful to remove empty line. Good alternative to sed !)
-  match_words="$(echo "${match_words}"| xargs -n 1 | sort -n | uniq | xargs)"
+  # -n                , if not specified - default all
+  # -r, --no-run-if-empty
+  #                   , if specified     - empty line will be ignored
+  #                   , (man page) If the standard input does not contain any nonblanks, do not run the command.  Normally, the command is run once even if there is no input.  This option is a GNU extension.
+  #
+  #
+  # default command   , /bin/echo
+  #     echo "foo bar" | xargs -r
+  #         --- equals to --->
+  #     echo "foo bar" | xargs -r echo
+  # --- xargs ---
+  match_words="$(echo "${match_words}"| xargs -n 1 | sort -n | uniq | xargs -r)"
   set +f
 
   echo "${match_words}"
