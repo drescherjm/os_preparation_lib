@@ -144,9 +144,9 @@ CHECK_FILE_KEYWORD() {
 
 # --- Note for find / ls ---
 #   ls -d -1 /*
-# --- equals to --->
+# --- similar to --->
 #   find / -maxdepth 1
-# --- equals to --->
+# --- similar to --->
 #   readlink -m /*
 
 
