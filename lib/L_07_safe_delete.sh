@@ -142,6 +142,14 @@ CHECK_FILE_KEYWORD() {
 
 }
 
+# --- Note for find / ls ---
+#   ls -d -1 /*
+# --- equals to --->
+#   find / -maxdepth 1
+# --- equals to --->
+#   readlink -m /*
+
+
 # --- Check via readlink -m keyword_files ---
 # Avoid user deletes folders under /
 CHECK_FILE_READLINK() {
