@@ -155,6 +155,7 @@ CHECK_FILE_KEYWORD() {
 CHECK_FILE_READLINK() {
   local keywords_var1="$(readlink -m $1)"
   #local keywords_var2="$((find / -maxdepth 1 ;  readlink -m /* ) | sort -n | uniq)" # basicly system files here are dangerous files
+  # For better github colorscheme view
   local keywords_var2="$(echo "$(find / -maxdepth 1 ;  readlink -m /* )" | sort -n | uniq)" # basicly system files here are dangerous files
   local match_words=''
 
