@@ -154,7 +154,9 @@ CHECK_FILE_KEYWORD() {
 # Avoid user deletes folders under /
 CHECK_FILE_READLINK() {
   local keywords_var1="$(readlink -m $1)"
-  local keywords_var2="$((find / -maxdepth 1 ;  readlink -m /* )|sort -n |uniq)" # basicly system files here are dangerous files
+
+  # basicly system files here are dangerous files
+  local keywords_var2="$((find / -maxdepth 1 ;  readlink -m /* )|sort -n |uniq)"
   local match_words=''
 
   # --- check files ---
