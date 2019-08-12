@@ -62,6 +62,7 @@ CHECK_IF_VAR1_IN_VAR2_GREP() {
       match_words="${match_words} $(echo "${keyword_var1}" | grep -F "${keyword_var2}")"
     done
   done
+  # xargs usage below will remove empty line automatically (xargs is useful to remove empty line. Good alternative to sed !)
   match_words="$(echo "${match_words}"| xargs -n 1 | sort -n | uniq | xargs)"
   set +f
 
