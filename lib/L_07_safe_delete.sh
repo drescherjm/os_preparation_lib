@@ -8,7 +8,7 @@ CHECK_IF_VAR1_IN_VAR2() {
   # Bash array slice ref. https://unix.stackexchange.com/questions/82060/bash-slice-of-positional-parameters
   #local keywords_var2="${@:2}"
 
-  local check_return='false'
+  #local check_return='false'
   local match_words=""
 
   # --For Debug--
