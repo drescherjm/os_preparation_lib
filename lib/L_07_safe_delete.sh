@@ -131,7 +131,7 @@ CHECK_FILE_KEYWORD() {
   # --For Debug--
   #CHECK_IF_VAR1_IN_VAR2 "${keywords_var1}" "${keywords_var2[@]}"
   #exit
-  #local match_words="$(CHECK_IF_VAR1_IN_VAR2 "${keywords_var1}" "${keywords_var2[@]}")"
+  #local match_words="$(CHECK_IF_VAR1_IN_VAR2 "${keywords_var1}" "${keywords_var2[@]}")"    # pass arguments using string, not array, for less confused issue
 
   local match_words="$(CHECK_IF_VAR1_IN_VAR2 "${keywords_var1}" "${keywords_var2}")"
   if [[ -n "${match_words}" ]]; then
