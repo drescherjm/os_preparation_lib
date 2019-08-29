@@ -30,5 +30,5 @@ done
 #-----------------------------------------------------------------------------------------
 #Make sure user_home priv is correct
 #-----------------------------------------------------------------------------------------
-echo "===== chown -R ${current_user}.${current_user} ${current_user_home} ====="
+echo "===== chown -R ${current_user}.${current_user} ${current_user_home} (could take awhile...)====="
 chown -R ${current_user}.${current_user} ${current_user_home}
