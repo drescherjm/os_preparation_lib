@@ -8,9 +8,12 @@ do
   L_IF_RENDER_USE="$(grep "DATABAG_CFG:enable" "${FUNCTIONS}/${FUNC_NAME}.sh")"
   MAKE_FUNC="
   ${FUNC_NAME} (){
-    echo \"==============================\"
+    echo -e '\\e[0;33m'
+    echo \"==========================================================================================\"
     echo \"        ${FUNC_NAME}\"
-    echo \"==============================\"
+    echo \"==========================================================================================\"
+    echo -n -e '\\033[00m'
+    echo -n -e '\\e[0;32m'
 
     # -- Variable passed to function used ---
     ### If you want to pass variables to function use,
@@ -45,6 +48,7 @@ do
     fi
     . ${FUNCTIONS}/${FUNC_NAME}.sh
     cd $CURRENT_FOLDER
+    echo -e '\\033[00m'
   }
   "
   eval "${MAKE_FUNC}"
