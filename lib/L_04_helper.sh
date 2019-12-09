@@ -6,12 +6,12 @@ do
   HELPER_VIEW_FOLDER="${HELPERS_VIEWS}/${HELPER_NAME}"
   MAKE_FUNC="
   ${HELPER_NAME} (){
-    echo -e '\\e[1;31m'
+    echo -e '\\e[1;36m'
     echo \"-------------------------------------------------------------------\"
     echo \"        ${HELPER_NAME}\"
     echo \"-------------------------------------------------------------------\"
     echo -n -e '\\033[00m'
-    echo -n -e '\\e[0;31m'
+    echo -n -e '\\e[0;36m'
 
     HELPER_VIEW_FOLDER=\"${HELPER_VIEW_FOLDER}\"
     . ${HELPERS}/${HELPER_NAME}.sh
