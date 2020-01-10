@@ -31,13 +31,13 @@ do
       if [ -f \"${L_DATABAG_FILE}\" ]
       then
         echo -n \"Reading data file: ${L_DATABAG_FILE}.\"
-        sleep 1
+        #sleep 1
         echo -n \".\"
-        sleep 1
+        #sleep 1
         echo -n \".\"
-        sleep 1
+        #sleep 1
         echo -n \".\"
-        sleep 1
+        #sleep 1
         echo \".\"
         . ${L_DATABAG_FILE}
       else
