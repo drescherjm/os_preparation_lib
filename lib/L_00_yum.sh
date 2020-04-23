@@ -2,7 +2,7 @@ FIRST_ARGV=$1
 
 if [[ "${FIRST_ARGV}" = "-l" ]]; then
   echo "Listing functions ONLY... (skip updating yum/dnf repo)"
-  exit
+  return 0
 fi
 
 #-----------------------------------------------------------------------------------------
