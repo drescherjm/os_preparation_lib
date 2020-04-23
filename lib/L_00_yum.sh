@@ -1,3 +1,10 @@
+FIRST_ARGV=$1
+
+if [[ "${FIRST_ARGV}" = "-l" ]]; then
+  echo "Listing functions ONLY... (skip updating yum/dnf repo)"
+  exit
+fi
+
 #-----------------------------------------------------------------------------------------
 # Before everything clean all yum / dnf cache
 #-----------------------------------------------------------------------------------------
