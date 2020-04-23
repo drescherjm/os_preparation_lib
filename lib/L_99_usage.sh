@@ -63,6 +63,7 @@ then
     exit
   fi
   #===========Select all funcs to run=======
+  L_UPDATE_REPO
   L_RUN ${FUNC_NAMES[@]}
   #===========Select all funcs to run=======
 
@@ -77,6 +78,7 @@ then
   #L_ARGVS_UNIQS=${L_ARGVS[@]}
 
   #**** Run funcs****
+  L_UPDATE_REPO
   L_RUN_SPECIFIED_FUNC ${L_ARGVS_UNIQS[@]}
 
   #===========Select specific funcs to run=======

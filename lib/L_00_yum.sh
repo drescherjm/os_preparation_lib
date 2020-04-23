@@ -1,49 +1,45 @@
-FIRST_ARGV=$1
+L_UPDATE_REPO() {
+  #-----------------------------------------------------------------------------------------
+  # Before everything clean all yum / dnf cache
+  #-----------------------------------------------------------------------------------------
+  local os_release_ver="$(cat /etc/centos-release |grep 'release 8')"
 
-if [[ "${FIRST_ARGV}" = "-l" ]]; then
-  echo "Listing functions ONLY... (skip updating yum/dnf repo)"
-  return 0
-fi
-
-#-----------------------------------------------------------------------------------------
-# Before everything clean all yum / dnf cache
-#-----------------------------------------------------------------------------------------
-OS_RELEASE_VER="$(cat /etc/centos-release |grep 'release 8')"
-
-if [[ -n "${OS_RELEASE_VER}" ]]; then
-  REPO_EXEC_CMD="dnf"
-else
-  REPO_EXEC_CMD="yum"
-fi
-
-
-$REPO_EXEC_CMD clean all >/dev/null 2>/dev/null
-
-############### Fetch dnf repo retry Loop (For epel-modular) #############
-DNF_REPO_INSTALL_RETRY=5000
-
-#let dnf_repo_install_retry++
-#for ((i=1; i<=dnf_repo_install_retry; i++)); do
-echo "Updating ${REPO_EXEC_CMD} Repo list....."
-
-for ((i=1; ; i++)); do
-
-  # ---------- Check DNF Repo Installation -----------
-  DNF_REPO_CHECK="$($REPO_EXEC_CMD repolist >/dev/null 2>/dev/null && echo "Success")"
-  if [[ -n "${DNF_REPO_CHECK}" ]]; then
-    echo "${REPO_EXEC_CMD} Repo is updated successfully!"
-    break
+  if [[ -n "${os_release_ver}" ]]; then
+    local repo_exec_cmd="dnf"
+  else
+    local repo_exec_cmd="yum"
   fi
 
-  if [[ -z "${DNF_REPO_CHECK}" ]]; then
-    echo "${REPO_EXEC_CMD} Repo is not updated yet!"
-    [[ $i -gt $DNF_REPO_INSTALL_RETRY ]] && exit
-  fi
 
-  echo -n "${REPO_EXEC_CMD} Repo updating (try: $i) "
-  #sleep 1; echo -n "."; sleep 1; echo -n "."; sleep 1; echo -n "."; echo ""
-  sleep 1; echo -n "."; echo ""
-done
+  $repo_exec_cmd clean all >/dev/null 2>/dev/null
 
-echo ""
-############### Fetch dnf repo retry Loop (For epel-modular) #############
+  ############### Fetch dnf repo retry Loop (For epel-modular) #############
+  local dnf_repo_install_retry=5000
+
+  #let dnf_repo_install_retry++
+  #for ((i=1; i<=dnf_repo_install_retry; i++)); do
+  echo "Updating ${repo_exec_cmd} Repo list....."
+
+  for ((i=1; ; i++)); do
+
+    # ---------- Check DNF Repo Installation -----------
+    local dnf_repo_check="$($repo_exec_cmd repolist >/dev/null 2>/dev/null && echo "Success")"
+    if [[ -n "${dnf_repo_check}" ]]; then
+      echo "${repo_exec_cmd} Repo is updated successfully!"
+      break
+    fi
+
+    if [[ -z "${dnf_repo_check}" ]]; then
+      echo "${repo_exec_cmd} Repo is not updated yet!"
+      [[ $i -gt $dnf_repo_install_retry ]] && exit
+    fi
+
+    echo -n "${repo_exec_cmd} Repo updating (try: $i) "
+    #sleep 1; echo -n "."; sleep 1; echo -n "."; sleep 1; echo -n "."; echo ""
+    sleep 1; echo -n "."; echo ""
+  done
+
+  echo ""
+  ############### Fetch dnf repo retry Loop (For epel-modular) #############
+}
+
