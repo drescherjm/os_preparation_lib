@@ -13,6 +13,8 @@ fi
 $REPO_EXEC_CMD clean all >/dev/null 2>/dev/null
 
 ############### Fetch dnf repo retry Loop (For epel-modular) #############
+DNF_REPO_INSTALL_RETRY=5000
+
 #let dnf_repo_install_retry++
 #for ((i=1; i<=dnf_repo_install_retry; i++)); do
 echo "Updating ${REPO_EXEC_CMD} Repo list....."
@@ -28,8 +30,7 @@ for ((i=1; ; i++)); do
 
   if [[ -z "${DNF_REPO_CHECK}" ]]; then
     echo "${REPO_EXEC_CMD} Repo is not updated yet!"
-    #[[ $i -eq $dnf_repo_install_retry ]] && exit
-    [[ $i -gt $dnf_repo_install_retry ]] && exit
+    [[ $i -gt $DNF_REPO_INSTALL_RETRY ]] && exit
   fi
 
   echo -n "${REPO_EXEC_CMD} Repo updating (try: $i) "
