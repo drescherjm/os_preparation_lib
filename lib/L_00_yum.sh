@@ -2,6 +2,7 @@ L_UPDATE_REPO() {
   #-----------------------------------------------------------------------------------------
   # Before everything clean all yum / dnf cache
   #-----------------------------------------------------------------------------------------
+  local first_param="$1"
   local os_release_ver="$(cat /etc/centos-release |grep 'release 8')"
 
   if [[ -n "${os_release_ver}" ]]; then
@@ -16,6 +17,10 @@ L_UPDATE_REPO() {
   if [[ -n "${os_release_ver}" ]]; then
     ############### Fetch dnf repo retry Loop (For epel-modular) #############
     local dnf_repo_install_retry=5000
+
+    if [[ -n "${first_param}" ]]; then
+      dnf_repo_install_retry="${first_param}"
+    fi
 
     #let dnf_repo_install_retry++
     #for ((i=1; i<=dnf_repo_install_retry; i++)); do

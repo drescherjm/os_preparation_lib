@@ -63,7 +63,10 @@ then
     exit
   fi
   #===========Select all funcs to run=======
+  # UPDATE retry 5000 by default
+  #L_UPDATE_REPO 5000
   L_UPDATE_REPO
+
   L_RUN ${FUNC_NAMES[@]}
   #===========Select all funcs to run=======
 
@@ -78,7 +81,10 @@ then
   #L_ARGVS_UNIQS=${L_ARGVS[@]}
 
   #**** Run funcs****
+  # UPDATE retry 5000 by default
+  #L_UPDATE_REPO 5000
   L_UPDATE_REPO
+
   L_RUN_SPECIFIED_FUNC ${L_ARGVS_UNIQS[@]}
 
   #===========Select specific funcs to run=======
