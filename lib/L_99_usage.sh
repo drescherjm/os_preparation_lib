@@ -24,8 +24,52 @@ L_IF_FUNC_EXISTS (){
   echo "${l_argvs[@]}"
 }
 
+L_RUN_DNF_REPO_UPDATE (){
+  local l_argvs_uniqs=($@)
+
+  # --- CentOS 7 or CentOS 8 ---
+  local l_os_release_ver="$(cat /etc/centos-release |grep 'release 8')"
+
+  if [[ -n "${l_os_release_ver}" ]]; then
+    local l_repo_exec_cmd="dnf"
+  else
+    local l_repo_exec_cmd="yum"
+  fi
+
+  # --- update repo if needed ---
+
+  # Prepare var
+  local l_do_dnf_repo_update
+  local l_argvs_uniq_str
+
+  # Combine string
+  for l_argvs_uniq in ${l_argvs_uniqs[@]}
+  do
+    local l_argvs_uniq_script="${FUNCTIONS}/${l_argvs_uniq}.sh"
+    l_argvs_uniq_str="${l_argvs_uniq_str} ${l_argvs_uniq_script}"
+  done
+ 
+  # Find which function is using dnf
+  if [[ -n "$(echo "${l_argvs_uniq_str}" | sed 's/ //g')" ]]; then
+    l_do_dnf_repo_update="$(grep -E "^\s*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
+  fi
+
+  # Update dnf repo
+  if [[ -n "${l_do_dnf_repo_update}" ]]; then
+    # Default -> retry : 5000
+    #L_UPDATE_REPO 5000
+    L_UPDATE_REPO
+  fi
+
+}
+
 L_RUN (){
   local l_argvs_uniqs=($@)
+
+  # --- update repo if needed ---
+  L_RUN_DNF_REPO_UPDATE ${l_argvs_uniqs[@]}
+
+  # --- exec function ---
   for l_argvs_uniq in ${l_argvs_uniqs[@]}
   do
     eval "${l_argvs_uniq}"
@@ -63,10 +107,6 @@ then
     exit
   fi
   #===========Select all funcs to run=======
-  # UPDATE retry 5000 by default
-  #L_UPDATE_REPO 5000
-  L_UPDATE_REPO
-
   L_RUN ${FUNC_NAMES[@]}
   #===========Select all funcs to run=======
 
@@ -81,10 +121,6 @@ then
   #L_ARGVS_UNIQS=${L_ARGVS[@]}
 
   #**** Run funcs****
-  # UPDATE retry 5000 by default
-  #L_UPDATE_REPO 5000
-  L_UPDATE_REPO
-
   L_RUN_SPECIFIED_FUNC ${L_ARGVS_UNIQS[@]}
 
   #===========Select specific funcs to run=======

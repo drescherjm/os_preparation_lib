@@ -14,7 +14,7 @@ L_UPDATE_REPO() {
 
   $repo_exec_cmd clean all >/dev/null 2>/dev/null
 
-  if [[ -n "${os_release_ver}" ]]; then
+  #if [[ -n "${os_release_ver}" ]]; then
     ############### Fetch dnf repo retry Loop (For epel-modular) #############
     local dnf_repo_install_retry=5000
 
@@ -47,6 +47,6 @@ L_UPDATE_REPO() {
 
     echo ""
     ############### Fetch dnf repo retry Loop (For epel-modular) #############
-  fi
+  #fi
 }
 
