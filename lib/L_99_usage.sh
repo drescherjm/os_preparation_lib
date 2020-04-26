@@ -51,7 +51,8 @@ L_RUN_DNF_REPO_UPDATE (){
  
   # Find which function is using dnf
   if [[ -n "$(echo "${l_argvs_uniq_str}" | sed 's/ //g')" ]]; then
-    l_do_dnf_repo_update="$(grep -E "^\s*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
+    #l_do_dnf_repo_update="$(grep -E "^\s*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
+    l_do_dnf_repo_update="$(grep -E "^[^#]*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
   fi
 
   # Update dnf repo
