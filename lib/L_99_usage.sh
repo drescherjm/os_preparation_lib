@@ -27,15 +27,6 @@ L_IF_FUNC_EXISTS (){
 L_RUN_DNF_REPO_UPDATE (){
   local l_argvs_uniqs=($@)
 
-  # --- CentOS 7 or CentOS 8 ---
-  local l_os_release_ver="$(cat /etc/centos-release |grep 'release 8')"
-
-  if [[ -n "${l_os_release_ver}" ]]; then
-    local l_repo_exec_cmd="dnf"
-  else
-    local l_repo_exec_cmd="yum"
-  fi
-
   # --- update repo if needed ---
 
   # Prepare var
@@ -51,8 +42,8 @@ L_RUN_DNF_REPO_UPDATE (){
  
   # Find which function is using dnf
   if [[ -n "$(echo "${l_argvs_uniq_str}" | sed 's/ //g')" ]]; then
-    #l_do_dnf_repo_update="$(grep -E "^\s*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
-    l_do_dnf_repo_update="$(grep -E "^[^#]*${l_repo_exec_cmd}" ${l_argvs_uniq_str})"
+    #l_do_dnf_repo_update="$(grep -E "^\s*${REPO_EXEC_CMD}" ${l_argvs_uniq_str})"
+    l_do_dnf_repo_update="$(grep -E "^[^#]*${REPO_EXEC_CMD}" ${l_argvs_uniq_str})"
   fi
 
   # Update dnf repo
@@ -67,6 +58,14 @@ L_RUN_DNF_REPO_UPDATE (){
 L_RUN (){
   local l_argvs_uniqs=($@)
 
+  # --- yum/dnf cache never expire ---
+  if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+    dnf config-manager --setopt metadata_expire=-1 --save
+  else
+    sed -i '/metadata_expire/d' /etc/yum.conf
+    echo 'metadata_expire=never' >> /etc/yum.conf
+  fi
+
   # --- update repo if needed ---
   L_RUN_DNF_REPO_UPDATE ${l_argvs_uniqs[@]}
 
@@ -76,6 +75,14 @@ L_RUN (){
     eval "${l_argvs_uniq}"
     #echo ${l_argvs_uniq}
   done
+
+  # --- yum/dnf cache default expire setting ---
+  if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+    sed -i '/metadata_expire/d' /etc/dnf.conf
+  else
+    sed -i '/metadata_expire/d' /etc/yum.conf
+  fi
+
 }
 
 L_RUN_SPECIFIED_FUNC (){

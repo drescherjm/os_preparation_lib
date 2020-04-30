@@ -1,4 +1,15 @@
 #------------------------------------
+# Define params
+#------------------------------------
+OS_RELEASE_VER="$(cat /etc/centos-release | grep -Eo 'release [[:digit:]]+' | awk '{print $2}')"
+
+if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+  REPO_EXEC_CMD="dnf"
+else
+  REPO_EXEC_CMD="yum"
+fi
+
+#------------------------------------
 # Define lib path
 #------------------------------------
 LIB="${OS_PRE_LIB}/lib"
