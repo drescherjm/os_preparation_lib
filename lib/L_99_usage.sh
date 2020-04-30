@@ -160,10 +160,11 @@ fi
 # Disable repo cache expiration all the time
 # Instead, using dnf-automatic / yum-cron to makecache
 
-#if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
-#  sed -i '/metadata_expire/d' /etc/dnf/dnf.conf
-#else
-#  sed -i '/metadata_expire/d' /etc/yum.conf
-#fi
+if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+  #sed -i '/metadata_expire/d' /etc/dnf/dnf.conf
+  echo ""
+else
+  sed -i '/metadata_expire/d' /etc/yum.conf
+fi
 
 # ----------------------------------------------------------------------------------
