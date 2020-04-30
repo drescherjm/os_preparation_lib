@@ -87,14 +87,19 @@ L_RUN_SPECIFIED_FUNC (){
 # ----------------------------------------------------------------------------------
 if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
   echo "---------------------------------------------------------------------------"
-  echo 'dnf set metadata_expire=-1 !!'
+  echo 'Setting dnf metadata_expire to -1 !!'
   echo ""
+  echo "Revert to default: "
+  echo "  sed -i '/metadata_expire/d' /etc/dnf.conf"
   echo "---------------------------------------------------------------------------"
   echo ""
   dnf config-manager --setopt metadata_expire=-1 --save
 else
   echo "---------------------------------------------------------------------------"
-  echo 'yum set metadata_expire=never !!'
+  echo 'Setting yum metadata_expire to never !!'
+  echo ""
+  echo "Revert to default: "
+  echo "  sed -i '/metadata_expire/d' /etc/yum.conf"
   echo ""
   echo "---------------------------------------------------------------------------"
   echo ""
