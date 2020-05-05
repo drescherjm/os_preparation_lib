@@ -43,3 +43,52 @@ L_UPDATE_REPO() {
   #fi
 }
 
+# ----------------------------------------------------------------------------------
+#                   yum/dnf cache never expire
+# ----------------------------------------------------------------------------------
+L_STOP_EXPIRING_REPO_CACHE() {
+  if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+    echo "---------------------------------------------------------------------------"
+    echo 'Setting dnf metadata_expire to -1 !!'
+    echo ""
+    echo "Better DO this , before installing packages:"
+    echo "  dnf makecache"
+    echo ""
+    echo "Revert to default: "
+    echo "  sed -i '/metadata_expire/d' /etc/dnf/dnf.conf"
+    echo "---------------------------------------------------------------------------"
+    echo ""
+    dnf config-manager --setopt metadata_expire=-1 --save
+  else
+    echo "---------------------------------------------------------------------------"
+    echo 'Setting yum metadata_expire to never !!'
+    echo ""
+    echo "Better DO this , before installing packages:"
+    echo "  yum makecache"
+    echo ""
+    echo "Revert to default: "
+    echo "  sed -i '/metadata_expire/d' /etc/yum.conf"
+    echo ""
+    echo "---------------------------------------------------------------------------"
+    echo ""
+    sed -i '/metadata_expire/d' /etc/yum.conf
+    echo 'metadata_expire=never' >> /etc/yum.conf
+  fi
+}
+# ----------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------
+#         yum/dnf cache default expire setting
+# ----------------------------------------------------------------------------------
+# Disable repo cache expiration all the time
+# Instead, using dnf-automatic / yum-cron to makecache
+
+L_START_EXPIRING_REPO_CACHE() {
+  if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
+    #sed -i '/metadata_expire/d' /etc/dnf/dnf.conf
+    echo ""
+  else
+    sed -i '/metadata_expire/d' /etc/yum.conf
+  fi
+}
+# ----------------------------------------------------------------------------------
