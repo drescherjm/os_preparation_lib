@@ -22,7 +22,7 @@ L_UPDATE_REPO() {
     for ((i=1; ; i++)); do
 
       # ---------- Check DNF Repo Installation -----------
-      local dnf_repo_check="$($REPO_EXEC_CMD repolist >/dev/null 2>/dev/null && echo "Success")"
+      local dnf_repo_check="$($REPO_EXEC_CMD makecache >/dev/null 2>/dev/null && echo "Success")"
       if [[ -n "${dnf_repo_check}" ]]; then
         echo "${REPO_EXEC_CMD} Repo is updated successfully!"
         break
