@@ -5,7 +5,8 @@ L_UPDATE_REPO() {
   local first_param="$1"
 
 
-  $REPO_EXEC_CMD clean all >/dev/null 2>/dev/null
+  #$REPO_EXEC_CMD clean all >/dev/null 2>/dev/null
+  $REPO_EXEC_CMD clean all
 
   #if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
     ############### Fetch dnf repo retry Loop (For epel-modular) #############
