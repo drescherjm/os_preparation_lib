@@ -58,6 +58,9 @@ L_RUN_DNF_REPO_UPDATE (){
 L_RUN (){
   local l_argvs_uniqs=($@)
 
+  # ntp -> update datetime
+  L_NTP_DATETIME
+  
   # --- update repo if needed ---
   L_RUN_DNF_REPO_UPDATE ${l_argvs_uniqs[@]}
 
