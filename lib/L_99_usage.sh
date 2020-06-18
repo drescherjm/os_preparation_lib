@@ -85,7 +85,7 @@ L_RUN_SPECIFIED_FUNC (){
 # ----------------------------------------------------------------------------------
 #                   yum/dnf cache never expire
 # ----------------------------------------------------------------------------------
-L_STOP_EXPIRING_REPO_CACHE
+#L_STOP_EXPIRING_REPO_CACHE
 # ----------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ then
   #===========Select all funcs to run=======
 
   # --- Set repo expiration back to default ---
-  L_START_EXPIRING_REPO_CACHE
+  #L_START_EXPIRING_REPO_CACHE
 elif [ "${FIRST_ARGV}" == "-i" ]
 then
   #===========Select specific funcs to run=======
@@ -127,8 +127,8 @@ then
   #===========Select specific funcs to run=======
 
   # --- Set repo expiration back to default ---
-  L_START_EXPIRING_REPO_CACHE
+  #L_START_EXPIRING_REPO_CACHE
 else
-  L_START_EXPIRING_REPO_CACHE
+  #L_START_EXPIRING_REPO_CACHE
   L_PRINT_HELP
 fi
