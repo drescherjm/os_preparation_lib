@@ -60,7 +60,7 @@ L_RUN (){
 
   # ntp -> update datetime
   L_NTP_DATETIME
-  
+
   # --- update repo if needed ---
   L_RUN_DNF_REPO_UPDATE ${l_argvs_uniqs[@]}
 
