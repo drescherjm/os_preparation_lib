@@ -24,3 +24,15 @@ do
   #echo "$LIB_SCRIPT"
 done
 #exit
+
+
+#-----------------------------------------------------------------------------------------
+# NTP update date time and hwclock to prevent mariadb cause systemd warning
+#-----------------------------------------------------------------------------------------
+rpm --quiet -q chrony || $REPO_EXEC_CMD install -y chrony
+# make sure chronyd stop first , before syncing time using chronyd command!
+systemctl stop chronyd
+systemctl disable chronyd
+chronyd -q 'pool pool.ntp.org iburst'
+
+hwclock -w
