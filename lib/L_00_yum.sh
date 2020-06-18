@@ -23,13 +23,14 @@ L_UPDATE_REPO() {
     for ((i=1; ; i++)); do
 
       # ---------- Check DNF Repo Installation -----------
-      local dnf_repo_check="$($REPO_EXEC_CMD makecache >/dev/null 2>/dev/null && echo "Success")"
-      if [[ -n "${dnf_repo_check}" ]]; then
+      $REPO_EXEC_CMD makecache
+      local dnf_repo_check=$?
+      if [[ ${dnf_repo_check} -eq 0 ]]; then
         echo "${REPO_EXEC_CMD} Repo is updated successfully!"
         break
       fi
 
-      if [[ -z "${dnf_repo_check}" ]]; then
+      if [[ ${dnf_repo_check} -ne 0 ]]; then
         echo "${REPO_EXEC_CMD} Repo is not updated yet!"
         [[ $i -gt $dnf_repo_install_retry ]] && exit
       fi
