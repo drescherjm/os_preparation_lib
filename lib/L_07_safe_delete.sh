@@ -195,14 +195,18 @@ SAFE_DELETE () {
   #echo "------ Deleting Files(debug) -----"
   #echo "${delete_files}"
   #echo "------ Deleting Files(debug) -----"
-  #echo 
+  #echo
 
 
   # --- start deleting files ---
   echo "------ Start Deleting Files -----"
   for delete_file in ${delete_files[@]}; do
-    echo "Deleting ${delete_file} ..."
-    rm -fr ${delete_file}
+    if [[ -e "${delete_file}" ]]; then
+      echo "Deleting ${delete_file} ..."
+      rm -fr ${delete_file}
+    else
+      echo "File \"${delete_file}\" does not exists !"
+    fi
   done
   echo "------ End Deleting Files -----"
 }
