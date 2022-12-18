@@ -18,6 +18,13 @@ LIB="${OS_PRE_LIB}/lib"
 # do something BEFORE ALL FUNCTIONS HERE
 #------------------------------------------------------------------------------------------------------------
 # do something here
+# --- make sure this is for CentOS only ---
+IS_CENTOS="$(echo ${OS_RELEASE_VER} | grep -i "centos")"
+if [[ -z "${IS_CENTOS}" ]]; then
+  echo "Make sure run this preparation under OS \"CentOS\""
+  exit
+fi
+
 
 #------------------------------------
 # Include libaries
