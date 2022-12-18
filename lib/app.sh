@@ -1,12 +1,13 @@
 #------------------------------------
 # Define params
 #------------------------------------
-OS_RELEASE_VER="$(cat /etc/centos-release | grep -Eo 'release [[:digit:]]+' | awk '{print $2}')"
+OS_NAME="$(cat /etc/os-release |grep -i pretty_name | cut -d'"' -f2 | grep -Eo "[[:print:]]+[[:digit:]\.]+")"
+OS_RELEASE_VER="$(cat /etc/os-release  |grep -iE "^version_id" | grep -oE "[[:digit:]\.]+")"
 
-if [[ "${OS_RELEASE_VER}" -eq 8 ]]; then
-  REPO_EXEC_CMD="dnf"
-else
+if [[ "${OS_RELEASE_VER}" -eq 7 ]]; then
   REPO_EXEC_CMD="yum"
+else
+  REPO_EXEC_CMD="dnf"
 fi
 
 #------------------------------------
@@ -19,7 +20,7 @@ LIB="${OS_PRE_LIB}/lib"
 #------------------------------------------------------------------------------------------------------------
 # do something here
 # --- make sure this is for CentOS only ---
-IS_CENTOS="$(echo ${OS_RELEASE_VER} | grep -i "centos")"
+IS_CENTOS="$(echo ${OS_NAME} | grep -i "centos")"
 if [[ -z "${IS_CENTOS}" ]]; then
   echo "Make sure run this preparation under OS \"CentOS\""
   exit
