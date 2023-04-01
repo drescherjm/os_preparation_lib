@@ -4,11 +4,11 @@
 OS_NAME="$(cat /etc/os-release |grep -i pretty_name | cut -d'"' -f2 | grep -Eo "[[:print:]]+[[:digit:]\.]+")"
 OS_RELEASE_VER="$(cat /etc/os-release  |grep -iE "^version_id" | grep -oE "[[:digit:]\.]+")"
 
-if [[ "${OS_RELEASE_VER}" -eq 7 ]]; then
-  REPO_EXEC_CMD="yum"
-else
+#if [[ "${OS_RELEASE_VER}" -eq 7 ]]; then
+#  REPO_EXEC_CMD="yum"
+#else
   REPO_EXEC_CMD="dnf"
-fi
+#fi
 
 #------------------------------------
 # Define lib path
@@ -20,9 +20,9 @@ LIB="${OS_PRE_LIB}/lib"
 #------------------------------------------------------------------------------------------------------------
 # do something here
 # --- make sure this is for CentOS only ---
-IS_CENTOS="$(echo ${OS_NAME} | grep -i "centos")"
-if [[ -z "${IS_CENTOS}" ]]; then
-  echo "Make sure run this preparation under OS \"CentOS\""
+IS_ROCKY="$(echo ${OS_NAME} | grep -i "rocky")"
+if [[ -z "${IS_ROCKY}" ]]; then
+  echo "Make sure run this preparation under OS \"Rocky\""
   exit
 fi
 
